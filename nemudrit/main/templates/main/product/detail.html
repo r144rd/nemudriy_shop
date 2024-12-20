@@ -1,18 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
 
-{% extends '' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+{% block title %}
+    {{product.name}}
+
+
+{% endblock title %}
     
-</body>
-</html>
 
 
-extends
+{% block content %}
+    <div class="detail-product">
+        <div class="detail-img">
+            <img src="
+            {% if product.image %}{{product.image.url}}
+                {% else %} {% static 'img/noimage.jpg' %}
+            {% endif %}
+                " alt="" class="detail-image">
+        </div>
+                <div class="detail-description">
+                    <h2>{{product.name}}</h2>
+                    <h3>Category:{{product.category}}</h3>
+                    <p>Desciption:{{product.desciption | linebreaks}}</p>
+                    {% if product.discount %}
+                <div class="cart-discount">
+                    <p class="line">{{ product.price }}</p>
+                    <p> {{ product.sell_price }}</p>
+                </div>
+                {% else %}
+                <p class="price">{{ product.price }}</p>
+                {% endif %}
+                <a href="#" class="card-btn "> add to card</a>
 
-{% extends %}
+            </div>
+        
+    </div>
+{% endblock content %}
+    
